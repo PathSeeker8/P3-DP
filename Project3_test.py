@@ -14,25 +14,30 @@ Directions: Ensure that the main script is in the same dir. so the import below 
 """
 
 import math
+import unittest
 import Project3 as project
 
-def test_run_min_dp_finds_best_path_with_limited_haunted():
-    teleport_matrix = [
-        [0, 5, 12],
-        [5, 0, 3],
-        [12, 3, 0],
-    ]
-    haunted_state = [0, 1, 0]
-    result = project.run_min_dp(teleport_matrix, haunted_state, haunted_limit=1)
-    assert result == 8  # 0->1->2 path with cost 8
+class TestMinDP(unittest.TestCase):
+    def test_run_min_dp_finds_best_path_with_limited_haunted(self):
+        teleport_matrix = [
+            [0, 5, 12],
+            [5, 0, 3],
+            [12, 3, 0],
+        ]
+        haunted_state = [0, 1, 0]
+        result = project.run_min_dp(teleport_matrix, haunted_state, haunted_limit=1)
+        self.assertEqual(result, 8)  # 0->1->2 path with cost 8
 
-def test_run_min_dp_returns_inf_when_limit_too_low():
-    big = project.INF
-    teleport_matrix = [
-        [0, 4, big],
-        [4, 0, 2],
-        [big, 2, 0],
-    ]
-    haunted_state = [0, 1, 0]
-    result = project.run_min_dp(teleport_matrix, haunted_state, haunted_limit=0)
-    assert math.isinf(result)
+    def test_run_min_dp_returns_inf_when_limit_too_low(self):
+        big = project.INF
+        teleport_matrix = [
+            [0, 4, big],
+            [4, 0, 2],
+            [big, 2, 0],
+        ]
+        haunted_state = [0, 1, 0]
+        result = project.run_min_dp(teleport_matrix, haunted_state, haunted_limit=0)
+        self.assertTrue(math.isinf(result))
+
+if __name__ == "__main__":
+    unittest.main()
