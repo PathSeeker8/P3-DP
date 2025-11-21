@@ -9,7 +9,10 @@ Description (Unit tests for Project3.py):
         
         - "test_run_min_dp_returns_inf_when_limit_too_low":
             - Uses a similar 3-galaxy graph but sets the haunted limit to 0 while the only viable path requires entering a haunted node. The function should report no feasible solution, so the test asserts the result is "inf".
-    
+        
+        - "test_optimal_path_uses_max_haunted":
+            - Builds a 4-galaxy graph with a cheap path through 2 haunted nodes and an expensive direct path. Checks that "run_min_dp" picks the cheaper route when given enough haunted.
+
 Directions: Ensure that the main script is in the same dir. so the import below works. That is all.
 """
 
@@ -38,6 +41,17 @@ class TestMinDP(unittest.TestCase):
         haunted_state = [0, 1, 0]
         result = project.run_min_dp(teleport_matrix, haunted_state, haunted_limit=0)
         self.assertTrue(math.isinf(result))
+    
+    def test_optimal_path_uses_max_haunted(self):
+        teleport_matrix = [
+            [0, 3, 47, 52],
+            [3, 0, 4, 41],
+            [47, 4, 0, 6],
+            [52, 41, 6, 0],
+        ]
+        haunted_state = [0, 1, 1, 0]
+        result = project.run_min_dp(teleport_matrix, haunted_state, haunted_limit=2)
+        self.assertEqual(result, 13)
 
 if __name__ == "__main__":
     unittest.main()
