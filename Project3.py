@@ -1,3 +1,20 @@
+"""
+File: Project3.py
+Author: Team 16
+
+Description:
+    This script is our answer to the dynamic programming problem “Teleportation in Astro Haunted Galaxies".
+
+Pseudocode:
+    See document due to length
+        
+Lines of code (w/ whitespace/comments):
+    Total: 62 lines of code for algorithm, + 3 for execution
+
+Time Complexity:
+    Total: O(n^2 k)
+"""
+
 import random
 import time
 
