@@ -66,7 +66,7 @@ def test_n2(galaxy_sizes, k=3):
         elapsed_time = time.time() - start
         print(f"n={galaxy_count}, k={k}, time={elapsed_time:.5f}s")
 
-# Runs experiments where haunted_limit grows with the galaxy size (k = n/2)
+# Runs experiments where haunted_limit grows with the galaxy size (k = n/2), more realistic and aligns with our theroretical
 def test_n3(galaxy_sizes):
     print("\n~~~n^3 experiment (k ~ n)~~~")
     for galaxy_count in galaxy_sizes:
